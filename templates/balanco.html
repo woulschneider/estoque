@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balanço Geral</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Balanço Geral das Vendas</h1>
+        <h2>Total Vendido: R$ {{ total_vendas }}</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Data da Venda</th>
+                    <th>Produto</th>
+                    <th>Quantidade</th>
+                    <th>Valor de Venda</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for venda in vendas %}
+                    <tr>
+                        <td>{{ venda.data_venda.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                        <td>{{ venda.produto.nome }}</td>
+                        <td>{{ venda.quantidade }}</td>
+                        <td>{{ venda.valor_venda }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{{ url_for('index') }}" class="btn btn-secondary">Voltar</a>
+    </div>
+</body>
+</html>
